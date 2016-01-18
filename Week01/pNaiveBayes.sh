@@ -57,4 +57,4 @@ countfiles=`\ls $data.chunk.*.counts | perl -pe 's/\n/ /'`
 ####
 
 ## clean up the data chunks and temporary count files
-# \rm $data.chunk.*
+\rm $data.chunk.*
