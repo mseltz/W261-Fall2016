@@ -31,6 +31,11 @@ The data you will use is a curated subset of the Enron email corpus
 (whose details you may find in the file enronemail_README.txt 
 in the directory surrounding these instructions).
 
+NOTE: please use the subject field and the body field for all your Naive Bayes modeling. 
+
+NOTE: This SPAM/HAM dataset for HW1 contains 100 records from the Enron SPAM/HAM corpus. Please limit your study to this. There are about 93,000 emails in the original SPAM/HAM corpus. There are several versions of the SPAM/HAM corpus. Other Enron-Spam datasets are available from http://www.iit.demokritos.gr/skel/i-config/ and http://www.aueb.gr/users/ion/publications.html in both raw and pre-processed form. 
+
+
 =====Instructions/Goals=====
 
 In this directory you will also find starter code (pNaiveBayes.sh),
@@ -111,7 +116,9 @@ HW1.3. Provide a mapper/reducer pair that, when executed by pNaiveBayes.sh
 
    the number of times “assistance” occurs in SPAM labeled documents / the number of words in documents labeled SPAM 
 
-   NOTE if  “assistance” occurs 5 times in all of the documents Labeled SPAM, and the length in terms of the number of words in all documents labeld as SPAM (when concatenated) is 1,000. Then Pr(X=“assistance”|Y=SPAM) = 5/1000. Note this is a multinomial estimated of the class conditional for a Naive Bayes Classifier.
+   NOTE if  “assistance” occurs 5 times in all of the documents Labeled SPAM, and the length in terms of the number of words in all documents labeld as SPAM (when concatenated) is 1,000. Then Pr(X=“assistance”|Y=SPAM) = 5/1000. Note this is a multinomial estimated of the class conditional for a Naive Bayes Classifier. No smoothing is needed in this HW.
+
+
 
 
 HW1.4. Provide a mapper/reducer pair that, when executed by pNaiveBayes.sh
@@ -122,7 +129,7 @@ HW1.4. Provide a mapper/reducer pair that, when executed by pNaiveBayes.sh
    - reducer.py 
 
    performs the multiple-word multinomial Naive Bayes classification via the chosen list.
-
+No smoothing is needed in this HW.
 
 
 HW1.5. Provide a mapper/reducer pair that, when executed by pNaiveBayes.sh
