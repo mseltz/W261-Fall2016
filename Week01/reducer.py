@@ -69,11 +69,17 @@ for doc in document_words:
         if word not in word_counts['1']: num_word_spam = 0
         else: num_word_spam = word_counts['1'][word]
         p_word_spam = (num_word_spam + 1.0) / (sum(word_counts['1'].values()) + len(vocab))
+        
+        # If we were to not use smoothing:
+        # p_word_spam = (num_word_spam) / sum(word_counts['1'].values())
 
         if word not in word_counts['0']: num_word_ham = 0
         else: num_word_ham = word_counts['0'][word]
         p_word_ham = (num_word_ham + 1.0) / (sum(word_counts['0'].values()) + len(vocab))
-
+        
+        # If we were to not use smoothing:
+        #p_word_ham = (num_word_ham) / sum(word_counts['0'].values())
+        
         # Update probabilities
         log_prob_spam_word += math.log(p_word_spam) * document_words[doc][word]
         log_prob_ham_word += math.log(p_word_ham) * document_words[doc][word]
