@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ## reducer.py
 ## Author: Miki Seltzer
-## Description: reducer code for HW2.3
+## Description: reducer code for HW2.5
 
 from operator import itemgetter
 import sys
@@ -9,12 +9,19 @@ import math
 import re
 
 # Initialize some variables
+doc = None
+spam = None
+count = 1
+class_count = {'1':0, '0':0}
+word = None
+
 prev_doc = None
 prev_spam = None
-prev_spam_count = 0
-prev_ham_count = 0
+prev_count = 1
+prev_class_count = {'1':0, '0':0}
 prev_word = None
 
+vocab = 0
 docs_total = 0
 docs = {'1':0, '0':0}
 words_total = 0
@@ -22,118 +29,139 @@ words = {'1':0, '0':0}
 log_prior = {'1':0, '0':0}
 log_posterior = {'1':0, '0':0}
 log_likelihood = {'1':0, '0':0}
-log_evidence = 0
 
-num_errors = 0.0
+classes = {'1':'spam', '0':'ham'}
+num_errors = {'1':0, '0':0}
 num_total = 0.0
 num_correct = 0.0
+
+print_debug = False
+
+# Create a function to update the posterior
+# since we need to do it in multiple locations.
+# We don't want to duplicate code
+def update_posterior():
+    for item in classes:
+        # This is where we incorporate smoothing
+        log_likelihood[item] = math.log((1 + prev_class_count[item]) / (vocab + words[item]))
+        log_posterior[item] += prev_count * log_likelihood[item]
+        if print_debug:
+            print "updated log posterior:", log_posterior[item]
+            print '\n'
+
+def make_prediction(): 
+    global num_total, num_correct
+    
+    # We can compare non-normalized posterior probabilities
+    num_total += 1
+    if log_posterior['1'] > log_posterior['0']: prediction = '1'
+    else: prediction = '0'
+
+    # Count correct guesses
+    if prev_spam == prediction:
+        num_correct += 1
+        
+    # Remember we need to normalize the posteriors
+    print '%s\t%s\t%s\t%s\t%s\n' % (prev_doc, prev_spam, prediction, 
+                                    log_posterior['1'],
+                                    log_posterior['0'])
 
 for line in sys.stdin:
     # Strip and split line
     # Assign variables
     line = line.replace('\n', '')
+    #doc, spam, word, count['1'], count['0'] = line.split('\t')
     key, value = line.strip().split('\t')
     doc, spam, word = key.split('^')
-    spam_count, ham_count = value.split('^')
-    
+    class_count['1'], class_count['0'] = value.split('^')    
+
+    # Keep this in a try/except statement so we don't fail
     try:
-        spam_count = float(spam_count)
-        ham_count = float(ham_count)
+        for item in classes:
+            class_count[item] = float(class_count[item])
     except ValueError:
         continue
 
-    # Let's calculate some log_probs!
+    # Let's calculate some probabilities
     if prev_doc == doc:
         # We haven't changed documents
         if prev_word == word:
             # We haven't changed words, so just increment
-            prev_spam_count += spam_count
-            prev_ham_count += ham_count
-            #print "update counts"
-            
+            prev_count += 1
+
         else:
             # We are at a new word
             # We need to check if we are at a keyword
+            if print_debug: print '\n', prev_word, '\n'
             if prev_word == '*alldocs': 
                 # We are at a record where we need to output total docs
-                docs_total = prev_spam_count
-                #print "total docs:", docs_total
-            
+                docs_total = prev_class_count['1']
+                if print_debug: print "total docs:", docs_total
+
             elif prev_word == '*docs': 
                 # We are at a record where we need to output unique docs per class
-                docs['1'] = prev_spam_count
-                docs['0'] = prev_ham_count
-                for item in log_prior:
+                for item in classes:
+                    docs[item] = prev_class_count[item]
+                for item in classes:
+                    if print_debug: print "prior", item, docs[item], '/', docs_total
                     log_prior[item] = math.log(docs[item] / docs_total)
-                    
+
                     # We will update the posterior after each word
                     # Initialize it to the prior
                     log_posterior[item] = math.log(docs[item] / docs_total)
-                #print "log prior:", log_prior
+                if print_debug: 
+                    print "log prior:", log_prior
+                    print 'log posterior initial', log_posterior
 
             elif prev_word == '*words':
                 # We are at a record where we need to output words per class
-                words['1'] = prev_spam_count
-                words['0'] = prev_ham_count
-                words_total = prev_spam_count + prev_ham_count
-                #print "word count:", words
+                for item in classes:
+                    words[item] = prev_class_count[item]
+                words_total = sum(prev_class_count.values())
+                if print_debug: print "word class_count:", words
+                                
+            elif prev_word == '*vocab':
+                # We are at a record where we need to output the vocab size
+                vocab = prev_class_count['1']
+                if print_debug: print "vocab size:", vocab
 
             elif prev_word:
                 # We are at a new normal word, and need to calculate stuff
-                try:
-                    log_likelihood['1'] = math.log(prev_spam_count / words['1'])
-                    #print word, "log likelihood spam for", word, log_likelihood['1']
-                    
-                except:
-                    #print "error calculating log likelihood spam for", word
-                    num_errors += 1
-                    
-                try:
-                    log_likelihood['0'] = math.log(prev_ham_count / words['0'])
-                    #print word, "log likelihood ham for", word, log_likelihood['0']
-                    
-                except:
-                    #print "error calculating log likelihood ham for", word
-                    num_errors += 1
-                    
-                # Calculate evidence
-                log_evidence = math.log((prev_spam_count + prev_ham_count)/words_total)
-                for item in log_posterior:
-                    log_posterior[item] += log_likelihood[item] - log_evidence
-                #print "updated log posterior:", log_posterior
-                
-                
+                update_posterior()
+
             prev_word = word
-            prev_spam_count = spam_count
-            prev_ham_count = ham_count
-            
+            prev_count = 1
+            for item in classes:
+                prev_class_count[item] = class_count[item]
+
     else:
-        # We are done with one document, and need to output our predictions
+        # We are done with one document. We need to: 
+        # - process the last word
+        # - output our predictions
         if prev_doc:
-            # We know that we're not on the very first record
-            if log_posterior['1'] > log_posterior['0']: prediction = '1'
-            else: prediction = '0'
-            num_total += 1
-            if prev_spam == prediction: num_correct += 1
-            print '%s\t%s\t%s\t%s\t%s' % (prev_doc, prev_spam, prediction, 
-                                          log_posterior['1'],
-                                          log_posterior['0'])
-        
+            if print_debug: print '\n', prev_word, '\n'
+            # We are at a new normal word, and need to calculate stuff
+            update_posterior()
+
+            # Now we can calculate the prediction
+            make_prediction()
+            if print_debug: print num_correct, "out of", num_total
+
         prev_doc = doc
         prev_spam = spam
         prev_word = word
-        prev_spam_count = spam_count
-        prev_ham_count = ham_count
+        for item in classes:
+            prev_class_count[item] = class_count[item]
+        log_likelihood = {'1':0, '0':0}
+        if print_debug: print "reset log likelihood"
 
 # Output our final prediction
-if log_posterior['1'] > log_posterior['0']: prediction = '1'
-else: prediction = '0'
-num_total += 1
-if prev_spam == prediction: num_correct += 1
-print '%s\t%s\t%s\t%s\t%s' % (prev_doc, prev_spam, prediction, 
-                              log_posterior['1'],
-                              log_posterior['0'])
-print '\n'
-print "Number of documents:", num_total
-print "Number correct predictions:", num_correct
-print "Accuracy:", num_correct / num_total
+if print_debug: print '\n', prev_word, '\n'
+update_posterior()
+make_prediction()
+
+print "Number of documents\t%d" % (num_total)
+print "Number correct predictions\t%d" % (num_correct)
+print "Error rate\t%s" % (100 - 100 * num_correct / num_total) + "%"
+print "Number of zero probability spam\t%d" % (num_errors['1'])
+print "Number of zero probability ham\t%d" % (num_errors['0'])

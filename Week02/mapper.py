@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ## mapper.py
 ## Author: Miki Seltzer
-## Description: mapper code for HW2.3
+## Description: mapper code for HW2.5
 
 import sys
 import string
