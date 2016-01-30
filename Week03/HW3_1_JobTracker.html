@@ -1,0 +1,1019 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta http-equiv="X-UA-Compatible" content="IE=8">
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+  <title>
+    Counters for job_1454173448181_0003
+  </title>
+  <link rel="stylesheet" href="HW3_1_JobTracker_files/yarn.css">
+  <style type="text/css">
+    #layout { height: 100%; }
+    #layout thead td { height: 3em; }
+    #layout #navcell { width: 11em; padding: 0 1em; }
+    #layout td.content { padding-top: 0 }
+    #layout tbody { vertical-align: top; }
+    #layout tfoot td { height: 4em; }
+  </style>
+  <link rel="stylesheet" href="HW3_1_JobTracker_files/jquery-ui.css">
+  <link rel="stylesheet" href="HW3_1_JobTracker_files/jui-dt.css">
+  <script type="text/javascript" src="HW3_1_JobTracker_files/jquery-1.js">
+  </script>
+  <script type="text/javascript" src="HW3_1_JobTracker_files/jquery-ui-1.js">
+  </script>
+  <script type="text/javascript" src="HW3_1_JobTracker_files/jquery.js">
+  </script>
+  <script type="text/javascript" src="HW3_1_JobTracker_files/yarn.js">
+  </script>
+  <style type="text/css">
+    #jsnotice { padding: 0.2em; text-align: center; }
+    .ui-progressbar { height: 1em; min-width: 5em }
+  </style>
+  <script type="text/javascript">
+    $(function() {
+      $('#nav').accordion({autoHeight:false, active:1});
+      $('#counters .dt-counters').dataTable({bStateSave : true, "fnStateSave": function (oSettings, oData) { sessionStorage.setItem( oSettings.sTableId, JSON.stringify(oData) ); }, "fnStateLoad": function (oSettings) { return JSON.parse( sessionStorage.getItem(oSettings.sTableId) );}, bJQueryUI:true, sDom:'t', iDisplayLength:-1}).fnSetFilteringDelay(288);
+    });
+  </script>
+  <style type="text/css">
+    #counters, .dt-counters { table-layout: fixed }
+    #counters th { overflow: hidden; vertical-align: middle }
+    #counters .dataTables_wrapper { min-height: 1em }
+    #counters .group { width: 15em }
+    #counters .name { width: 30em }
+  </style>
+  </head><body><div style="display: none;" id="jsnotice" class="ui-state-error">
+    This page works best with javascript enabled.
+  </div>
+  <script type="text/javascript">
+    $('#jsnotice').hide();
+  </script>
+  <table id="layout" class="ui-widget-content">
+    <thead>
+      <tr>
+        <td colspan="2">
+          <div id="header" class="ui-widget">
+            <div id="user">
+              Logged in as: dr.who
+            </div>
+            <div id="logo">
+              <img src="HW3_1_JobTracker_files/hadoop-st.png">
+            </div>
+            <h1>
+              Counters for job_1454173448181_0003
+            </h1>
+          </div>
+        </td>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="2">
+          <div id="footer" class="ui-widget">
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr>
+        <td id="navcell">
+          <div role="tablist" class="ui-accordion ui-widget ui-helper-reset" id="nav">
+            <h3 tabindex="-1" aria-selected="false" aria-controls="ui-accordion-nav-panel-0" id="ui-accordion-nav-header-0" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
+              Application
+            </h3>
+            <ul aria-hidden="true" aria-expanded="false" role="tabpanel" aria-labelledby="ui-accordion-nav-header-0" id="ui-accordion-nav-panel-0" style="display: none;" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+              <li>
+                <a href="http://quickstart.cloudera:19888/jobhistory/about">About</a>
+              </li><li>
+                <a href="http://quickstart.cloudera:19888/jobhistory/app">Jobs</a>
+            </li></ul>
+            <h3 tabindex="0" aria-selected="true" aria-controls="ui-accordion-nav-panel-1" id="ui-accordion-nav-header-1" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-header-active ui-state-active ui-corner-top ui-accordion-icons"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>
+              Job
+            </h3>
+            <ul aria-hidden="false" aria-expanded="true" role="tabpanel" aria-labelledby="ui-accordion-nav-header-1" id="ui-accordion-nav-panel-1" style="display: block;" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">
+              <li>
+                <a href="http://quickstart.cloudera:19888/jobhistory/job/job_1454173448181_0003">Overview</a>
+              </li><li>
+                <a href="http://quickstart.cloudera:19888/jobhistory/jobcounters/job_1454173448181_0003">Counters</a>
+              </li><li>
+                <a href="http://quickstart.cloudera:19888/jobhistory/conf/job_1454173448181_0003">Configuration</a>
+              </li><li>
+                <a href="http://quickstart.cloudera:19888/jobhistory/tasks/job_1454173448181_0003/m">Map tasks</a>
+              </li><li>
+                <a href="http://quickstart.cloudera:19888/jobhistory/tasks/job_1454173448181_0003/r">Reduce tasks</a>
+            </li></ul>
+            <h3 tabindex="-1" aria-selected="false" aria-controls="ui-accordion-nav-panel-2" id="ui-accordion-nav-header-2" role="tab" class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
+              Tools
+            </h3>
+            <ul aria-hidden="true" aria-expanded="false" role="tabpanel" aria-labelledby="ui-accordion-nav-header-2" id="ui-accordion-nav-panel-2" style="display: none;" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+              <li>
+                <a href="http://quickstart.cloudera:19888/conf">Configuration</a>
+              </li><li>
+                <a href="http://quickstart.cloudera:19888/logs">Local logs</a>
+              </li><li>
+                <a href="http://quickstart.cloudera:19888/stacks">Server stacks</a>
+              </li><li>
+                <a href="http://quickstart.cloudera:19888/jmx?qry=Hadoop:*">Server metrics</a>
+            </li></ul>
+          </div>
+        </td>
+        <td class="content">
+          <div class="info-wrap ui-widget-content ui-corner-bottom">
+            <table id="counters">
+              <thead>
+                <tr>
+                  <th class="group ui-state-default">
+                    Counter Group
+                  </th>
+                  <th class="ui-state-default">
+                    Counters
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th title="org.apache.hadoop.mapreduce.FileSystemCounter" class="ui-state-default">
+                    File System Counters
+                  </th>
+                  <td class="table">
+                    <div id="job_1454173448181_0003.org.apache.hadoop.mapreduce.FileSystemCounter_wrapper" class="dataTables_wrapper" role="grid"><table class="dt-counters dataTable" id="job_1454173448181_0003.org.apache.hadoop.mapreduce.FileSystemCounter">
+                      <thead>
+                        <tr role="row"><th aria-label="
+                            Name
+                          : activate to sort column descending" aria-sort="ascending" style="width: 431.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.FileSystemCounter" tabindex="0" role="columnheader" class="name ui-state-default"><div class="DataTables_sort_wrapper">
+                            Name
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th><th aria-label="
+                            Map
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.FileSystemCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Map
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Reduce
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.FileSystemCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Reduce
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Total
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.FileSystemCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Total
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th></tr>
+                      </thead>
+                      
+                    <tbody aria-relevant="all" aria-live="polite" role="alert"><tr class="odd">
+                          <td class="  sorting_1" title="FILE_BYTES_READ">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.FileSystemCounter/FILE_BYTES_READ">FILE: Number of bytes read</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            65572699
+                          </td>
+                          <td class=" ">
+                            65572699
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="FILE_BYTES_WRITTEN">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.FileSystemCounter/FILE_BYTES_WRITTEN">FILE: Number of bytes written</a>
+                          </td>
+                          <td class=" ">
+                            65800257
+                          </td>
+                          <td class=" ">
+                            65686420
+                          </td>
+                          <td class=" ">
+                            131486677
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="FILE_LARGE_READ_OPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.FileSystemCounter/FILE_LARGE_READ_OPS">FILE: Number of large read operations</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="FILE_READ_OPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.FileSystemCounter/FILE_READ_OPS">FILE: Number of read operations</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="FILE_WRITE_OPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.FileSystemCounter/FILE_WRITE_OPS">FILE: Number of write operations</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="HDFS_BYTES_READ">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.FileSystemCounter/HDFS_BYTES_READ">HDFS: Number of bytes read</a>
+                          </td>
+                          <td class=" ">
+                            50910830
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            50910830
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="HDFS_BYTES_WRITTEN">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.FileSystemCounter/HDFS_BYTES_WRITTEN">HDFS: Number of bytes written</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            64933696
+                          </td>
+                          <td class=" ">
+                            64933696
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="HDFS_LARGE_READ_OPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.FileSystemCounter/HDFS_LARGE_READ_OPS">HDFS: Number of large read operations</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="HDFS_READ_OPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.FileSystemCounter/HDFS_READ_OPS">HDFS: Number of read operations</a>
+                          </td>
+                          <td class=" ">
+                            6
+                          </td>
+                          <td class=" ">
+                            3
+                          </td>
+                          <td class=" ">
+                            9
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="HDFS_WRITE_OPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.FileSystemCounter/HDFS_WRITE_OPS">HDFS: Number of write operations</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            2
+                          </td>
+                          <td class=" ">
+                            2
+                          </td>
+                        </tr></tbody></table></div>
+                  </td>
+                </tr>
+                <tr>
+                  <th title="org.apache.hadoop.mapreduce.JobCounter" class="ui-state-default">
+                    Job Counters 
+                  </th>
+                  <td class="table">
+                    <div id="job_1454173448181_0003.org.apache.hadoop.mapreduce.JobCounter_wrapper" class="dataTables_wrapper" role="grid"><table class="dt-counters dataTable" id="job_1454173448181_0003.org.apache.hadoop.mapreduce.JobCounter">
+                      <thead>
+                        <tr role="row"><th aria-label="
+                            Name
+                          : activate to sort column descending" aria-sort="ascending" style="width: 431.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.JobCounter" tabindex="0" role="columnheader" class="name ui-state-default"><div class="DataTables_sort_wrapper">
+                            Name
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th><th aria-label="
+                            Map
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.JobCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Map
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Reduce
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.JobCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Reduce
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Total
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.JobCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Total
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th></tr>
+                      </thead>
+                      
+                    <tbody aria-relevant="all" aria-live="polite" role="alert"><tr class="odd">
+                          <td class="  sorting_1" title="DATA_LOCAL_MAPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/DATA_LOCAL_MAPS">Data-local map tasks</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            2
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="TOTAL_LAUNCHED_MAPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/TOTAL_LAUNCHED_MAPS">Launched map tasks</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            2
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="TOTAL_LAUNCHED_REDUCES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/TOTAL_LAUNCHED_REDUCES">Launched reduce tasks</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            1
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="MB_MILLIS_MAPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/MB_MILLIS_MAPS">Total megabyte-seconds taken by all map tasks</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            26944512
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="MB_MILLIS_REDUCES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/MB_MILLIS_REDUCES">Total megabyte-seconds taken by all reduce tasks</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            7956480
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="MILLIS_MAPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/MILLIS_MAPS">Total time spent by all map tasks (ms)</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            26313
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="SLOTS_MILLIS_MAPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/SLOTS_MILLIS_MAPS">Total time spent by all maps in occupied slots (ms)</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            26313
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="MILLIS_REDUCES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/MILLIS_REDUCES">Total time spent by all reduce tasks (ms)</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            7770
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="SLOTS_MILLIS_REDUCES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/SLOTS_MILLIS_REDUCES">Total time spent by all reduces in occupied slots (ms)</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            7770
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="VCORES_MILLIS_MAPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/VCORES_MILLIS_MAPS">Total vcore-seconds taken by all map tasks</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            26313
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="VCORES_MILLIS_REDUCES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.JobCounter/VCORES_MILLIS_REDUCES">Total vcore-seconds taken by all reduce tasks</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            7770
+                          </td>
+                        </tr></tbody></table></div>
+                  </td>
+                </tr>
+                <tr>
+                  <th title="org.apache.hadoop.mapreduce.TaskCounter" class="ui-state-default">
+                    Map-Reduce Framework
+                  </th>
+                  <td class="table">
+                    <div id="job_1454173448181_0003.org.apache.hadoop.mapreduce.TaskCounter_wrapper" class="dataTables_wrapper" role="grid"><table class="dt-counters dataTable" id="job_1454173448181_0003.org.apache.hadoop.mapreduce.TaskCounter">
+                      <thead>
+                        <tr role="row"><th aria-label="
+                            Name
+                          : activate to sort column descending" aria-sort="ascending" style="width: 431.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.TaskCounter" tabindex="0" role="columnheader" class="name ui-state-default"><div class="DataTables_sort_wrapper">
+                            Name
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th><th aria-label="
+                            Map
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.TaskCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Map
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Reduce
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.TaskCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Reduce
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Total
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.TaskCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Total
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th></tr>
+                      </thead>
+                      
+                    <tbody aria-relevant="all" aria-live="polite" role="alert"><tr class="odd">
+                          <td class="  sorting_1" title="COMBINE_INPUT_RECORDS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/COMBINE_INPUT_RECORDS">Combine input records</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="COMBINE_OUTPUT_RECORDS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/COMBINE_OUTPUT_RECORDS">Combine output records</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="CPU_MILLISECONDS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/CPU_MILLISECONDS">CPU time spent (ms)</a>
+                          </td>
+                          <td class=" ">
+                            14190
+                          </td>
+                          <td class=" ">
+                            5460
+                          </td>
+                          <td class=" ">
+                            19650
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="FAILED_SHUFFLE">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/FAILED_SHUFFLE">Failed Shuffles</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="GC_TIME_MILLIS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/GC_TIME_MILLIS">GC time elapsed (ms)</a>
+                          </td>
+                          <td class=" ">
+                            222
+                          </td>
+                          <td class=" ">
+                            65
+                          </td>
+                          <td class=" ">
+                            287
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="SPLIT_RAW_BYTES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/SPLIT_RAW_BYTES">Input split bytes</a>
+                          </td>
+                          <td class=" ">
+                            248
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            248
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="MAP_INPUT_RECORDS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/MAP_INPUT_RECORDS">Map input records</a>
+                          </td>
+                          <td class=" ">
+                            312913
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            312913
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="MAP_OUTPUT_BYTES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/MAP_OUTPUT_BYTES">Map output bytes</a>
+                          </td>
+                          <td class=" ">
+                            64626836
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            64626836
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="MAP_OUTPUT_MATERIALIZED_BYTES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/MAP_OUTPUT_MATERIALIZED_BYTES">Map output materialized bytes</a>
+                          </td>
+                          <td class=" ">
+                            65572705
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            65572705
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="MAP_OUTPUT_RECORDS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/MAP_OUTPUT_RECORDS">Map output records</a>
+                          </td>
+                          <td class=" ">
+                            312913
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            312913
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="MERGED_MAP_OUTPUTS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/MERGED_MAP_OUTPUTS">Merged Map outputs</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            2
+                          </td>
+                          <td class=" ">
+                            2
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="PHYSICAL_MEMORY_BYTES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/PHYSICAL_MEMORY_BYTES">Physical memory (bytes) snapshot</a>
+                          </td>
+                          <td class=" ">
+                            638414848
+                          </td>
+                          <td class=" ">
+                            310984704
+                          </td>
+                          <td class=" ">
+                            949399552
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="REDUCE_INPUT_GROUPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/REDUCE_INPUT_GROUPS">Reduce input groups</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            312913
+                          </td>
+                          <td class=" ">
+                            312913
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="REDUCE_INPUT_RECORDS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/REDUCE_INPUT_RECORDS">Reduce input records</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            312913
+                          </td>
+                          <td class=" ">
+                            312913
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="REDUCE_OUTPUT_RECORDS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/REDUCE_OUTPUT_RECORDS">Reduce output records</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            625826
+                          </td>
+                          <td class=" ">
+                            625826
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="REDUCE_SHUFFLE_BYTES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/REDUCE_SHUFFLE_BYTES">Reduce shuffle bytes</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            65572705
+                          </td>
+                          <td class=" ">
+                            65572705
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="SHUFFLED_MAPS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/SHUFFLED_MAPS">Shuffled Maps </a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            2
+                          </td>
+                          <td class=" ">
+                            2
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="SPILLED_RECORDS">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/SPILLED_RECORDS">Spilled Records</a>
+                          </td>
+                          <td class=" ">
+                            312913
+                          </td>
+                          <td class=" ">
+                            312913
+                          </td>
+                          <td class=" ">
+                            625826
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="COMMITTED_HEAP_BYTES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/COMMITTED_HEAP_BYTES">Total committed heap usage (bytes)</a>
+                          </td>
+                          <td class=" ">
+                            462422016
+                          </td>
+                          <td class=" ">
+                            328728576
+                          </td>
+                          <td class=" ">
+                            791150592
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="VIRTUAL_MEMORY_BYTES">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.TaskCounter/VIRTUAL_MEMORY_BYTES">Virtual memory (bytes) snapshot</a>
+                          </td>
+                          <td class=" ">
+                            3126362112
+                          </td>
+                          <td class=" ">
+                            1580142592
+                          </td>
+                          <td class=" ">
+                            4706504704
+                          </td>
+                        </tr></tbody></table></div>
+                  </td>
+                </tr>
+                <tr>
+                  <th title="Product" class="ui-state-default">
+                    Product
+                  </th>
+                  <td class="table">
+                    <div id="job_1454173448181_0003.Product_wrapper" class="dataTables_wrapper" role="grid"><table class="dt-counters dataTable" id="job_1454173448181_0003.Product">
+                      <thead>
+                        <tr role="row"><th aria-label="
+                            Name
+                          : activate to sort column descending" aria-sort="ascending" style="width: 431.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.Product" tabindex="0" role="columnheader" class="name ui-state-default"><div class="DataTables_sort_wrapper">
+                            Name
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th><th aria-label="
+                            Map
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.Product" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Map
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Reduce
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.Product" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Reduce
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Total
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.Product" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Total
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th></tr>
+                      </thead>
+                      
+                    <tbody aria-relevant="all" aria-live="polite" role="alert"><tr class="odd">
+                          <td class="  sorting_1" title="Debt">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/Product/Debt">Debt</a>
+                          </td>
+                          <td class=" ">
+                            44372
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            44372
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="Mortgage">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/Product/Mortgage">Mortgage</a>
+                          </td>
+                          <td class=" ">
+                            125752
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            125752
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="Other">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/Product/Other">Other</a>
+                          </td>
+                          <td class=" ">
+                            142789
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            142789
+                          </td>
+                        </tr></tbody></table></div>
+                  </td>
+                </tr>
+                <tr>
+                  <th title="Shuffle Errors" class="ui-state-default">
+                    Shuffle Errors
+                  </th>
+                  <td class="table">
+                    <div id="job_1454173448181_0003.Shuffle Errors_wrapper" class="dataTables_wrapper" role="grid"><table class="dt-counters dataTable" id="job_1454173448181_0003.Shuffle Errors">
+                      <thead>
+                        <tr role="row"><th aria-label="
+                            Name
+                          : activate to sort column descending" aria-sort="ascending" style="width: 431.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.Shuffle Errors" tabindex="0" role="columnheader" class="name ui-state-default"><div class="DataTables_sort_wrapper">
+                            Name
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th><th aria-label="
+                            Map
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.Shuffle Errors" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Map
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Reduce
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.Shuffle Errors" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Reduce
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Total
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.Shuffle Errors" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Total
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th></tr>
+                      </thead>
+                      
+                    <tbody aria-relevant="all" aria-live="polite" role="alert"><tr class="odd">
+                          <td class="  sorting_1" title="BAD_ID">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/Shuffle%20Errors/BAD_ID">BAD_ID</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="CONNECTION">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/Shuffle%20Errors/CONNECTION">CONNECTION</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="IO_ERROR">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/Shuffle%20Errors/IO_ERROR">IO_ERROR</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="WRONG_LENGTH">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/Shuffle%20Errors/WRONG_LENGTH">WRONG_LENGTH</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="odd">
+                          <td class="  sorting_1" title="WRONG_MAP">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/Shuffle%20Errors/WRONG_MAP">WRONG_MAP</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr><tr class="even">
+                          <td class="  sorting_1" title="WRONG_REDUCE">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/Shuffle%20Errors/WRONG_REDUCE">WRONG_REDUCE</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                        </tr></tbody></table></div>
+                  </td>
+                </tr>
+                <tr>
+                  <th title="org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter" class="ui-state-default">
+                    File Input Format Counters 
+                  </th>
+                  <td class="table">
+                    <div id="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter_wrapper" class="dataTables_wrapper" role="grid"><table class="dt-counters dataTable" id="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter">
+                      <thead>
+                        <tr role="row"><th aria-label="
+                            Name
+                          : activate to sort column descending" aria-sort="ascending" style="width: 431.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter" tabindex="0" role="columnheader" class="name ui-state-default"><div class="DataTables_sort_wrapper">
+                            Name
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th><th aria-label="
+                            Map
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Map
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Reduce
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Reduce
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Total
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Total
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th></tr>
+                      </thead>
+                      
+                    <tbody aria-relevant="all" aria-live="polite" role="alert"><tr class="odd">
+                          <td class="  sorting_1" title="BYTES_READ">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.lib.input.FileInputFormatCounter/BYTES_READ">Bytes Read</a>
+                          </td>
+                          <td class=" ">
+                            50910582
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            50910582
+                          </td>
+                        </tr></tbody></table></div>
+                  </td>
+                </tr>
+                <tr>
+                  <th title="org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter" class="ui-state-default">
+                    File Output Format Counters 
+                  </th>
+                  <td class="table">
+                    <div id="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter_wrapper" class="dataTables_wrapper" role="grid"><table class="dt-counters dataTable" id="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter">
+                      <thead>
+                        <tr role="row"><th aria-label="
+                            Name
+                          : activate to sort column descending" aria-sort="ascending" style="width: 431.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter" tabindex="0" role="columnheader" class="name ui-state-default"><div class="DataTables_sort_wrapper">
+                            Name
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th><th aria-label="
+                            Map
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Map
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Reduce
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Reduce
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th aria-label="
+                            Total
+                          : activate to sort column ascending" style="width: 127.6px;" colspan="1" rowspan="1" aria-controls="job_1454173448181_0003.org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter" tabindex="0" role="columnheader" class="ui-state-default"><div class="DataTables_sort_wrapper">
+                            Total
+                          <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th></tr>
+                      </thead>
+                      
+                    <tbody aria-relevant="all" aria-live="polite" role="alert"><tr class="odd">
+                          <td class="  sorting_1" title="BYTES_WRITTEN">
+                            <a href="http://quickstart.cloudera:19888/jobhistory/singlejobcounter/job_1454173448181_0003/org.apache.hadoop.mapreduce.lib.output.FileOutputFormatCounter/BYTES_WRITTEN">Bytes Written</a>
+                          </td>
+                          <td class=" ">
+                            0
+                          </td>
+                          <td class=" ">
+                            64933696
+                          </td>
+                          <td class=" ">
+                            64933696
+                          </td>
+                        </tr></tbody></table></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</body></html>
