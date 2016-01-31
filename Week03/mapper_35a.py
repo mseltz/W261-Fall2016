@@ -33,4 +33,4 @@ for line in sys.stdin:
     total += 1
         
 # Print total words
-print '%s\t%s' % ('*total', total)
+print '%s\t%s' % ('*total', {'*total':total})
