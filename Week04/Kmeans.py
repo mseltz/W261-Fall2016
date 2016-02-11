@@ -43,7 +43,8 @@ class MRKmeans(MRJob):
     
     #load centroids info from file
     def mapper_init(self):
-        os.chdir(r'/home/cloudera/Documents/W261-Fall2016/Week04')
+        #os.chdir(r'/home/cloudera/Documents/W261-Fall2016/Week04')
+        os.chdir(r'C:\Users\miki.seltzer\Google Drive\2016 01 Spring Semester\W261 - ML at Scale\W261-Fall2016\Week04')
         myfile = open('Centroids.txt','r')
         self.centroid_points = [map(float,s.split('\n')[0].split(',')) for s in myfile.readlines()]
         myfile.close()
