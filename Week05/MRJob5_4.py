@@ -1,57 +1,69 @@
 from mrjob.job import MRJob
 from mrjob.step import MRStep
- 
-class job(MRJob):
-    
-    # Specify some custom options so we only have to write one MRJob class for each part
-    def configure_options(self):
-        super(job, self).configure_options()
-        self.add_passthrough_option('--part', default='1')
-    
-    """
-    Find the longest 5-gram
-    - In this case, in each mapper, we only need to store the length of the longest 5-gram we have seen
-    - After the mapper has run, we emit the longest 5-gram from this mapper
-    - All results will be sent to the same reducer (key = None)
-    """
-    
-    def mapper_longest5gram_init(self):
-        self.maxLength = 0
-    
-    def mapper_longest5gram(self, _, line):
-        fields = line.strip().split('\t')
-        if len(fields[0]) > self.maxLength: 
-            self.maxLength = len(fields[0])
-            
-    def mapper_longest5gram_final(self):
-        yield None, self.maxLength
-    
-    def reducer_longest5gram(self, key, values):
-        yield None, max(values)
-    
-    """
-    Top 10 most frequent words
-    """
 
-    def mapper_top10words(self, _, line):
+class stripes(MRJob):
+    
+    """
+    Build stripes
+    - Read in basis words from basisWords.txt
+    - Emit stripes where the key and each value's key is in the basis
+    """
+    
+    def mapper_buildStripe_init(self):
+        self.vocab = set()
+        with open('basisWords.txt','r') as myfile:
+            for word in myfile:
+                self.vocab.add(word.strip())
+        print self.vocab
+        
+    def mapper_buildStripe(self, _, line):
         fields = line.strip().split('\t')
         words = fields[0].lower().split()
-        print words
+        wordList = sorted(list(set(words)))
+        for index1 in range(len(wordList)-1):
+            stripe = {}
+            if wordList[index1] in self.vocab:
+                for index2 in range(index1+1,len(wordList)):
+                    if wordList[index2] in self.vocab:
+                        stripe[wordList[index2]] = 1
+            if len(stripe) > 0:
+                yield wordList[index1], stripe
+            
+    def combiner_buildStripe(self, key, values):
+        stripe = {}
+        for val in values:
+            for word in val:
+                if word in stripe:
+                    stripe[word] += val[word]
+                else:
+                    stripe[word] = val[word]
+        yield key, stripe
+        
+    def reducer_buildStripe(self, key, values):
+        stripe = {}
+        for val in values:
+            for word in val:
+                if word in stripe:
+                    stripe[word] += val[word]
+                else:
+                    stripe[word] = val[word]
+        yield key, stripe
     
-    # Multi-step pipeline definition
+            
+        
+    """
+    Multi-step pipeline definitions
+    Based on user input when calling runner function
+    """
     def steps(self):
-        self.part = self.options.part
-        if self.part == '1':
-            return [
-                MRStep(mapper_init=self.mapper_longest5gram_init,
-                       mapper=self.mapper_longest5gram,
-                       mapper_final=self.mapper_longest5gram_final,
-                       reducer=self.reducer_longest5gram)
-            ]
-        elif self.part == '2':
-            return [
-                MRStep(mapper=self.mapper_top10words)
-            ]
+        return [
+            MRStep(mapper_init=self.mapper_buildStripe_init,
+                   mapper=self.mapper_buildStripe,
+                   combiner=self.combiner_buildStripe,
+                   reducer=self.reducer_buildStripe,
+                   jobconf={'mapred.reduce.tasks': 2})
+        ]
+    
 
 if __name__ == '__main__':
-    job.run()
+    stripes.run()
