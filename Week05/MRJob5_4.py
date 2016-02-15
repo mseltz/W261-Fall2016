@@ -14,7 +14,6 @@ class stripes(MRJob):
         with open('basisWords.txt','r') as myfile:
             for word in myfile:
                 self.vocab.add(word.strip())
-        print self.vocab
         
     def mapper_buildStripe(self, _, line):
         fields = line.strip().split('\t')
