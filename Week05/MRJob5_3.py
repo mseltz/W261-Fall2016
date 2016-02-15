@@ -53,8 +53,8 @@ class job(MRJob):
         words = fields[0].lower().split()
         count, pages_count, books_count = int(fields[1]), int(fields[2]), int(fields[3])
         for word in words:
-            self.increment_counter('total', 'words', 1)
-            yield word, 1
+            self.increment_counter('total', 'words', count)
+            yield word, count
         
     def combiner_topWords(self, key, values):
         yield key, sum(values)
@@ -98,7 +98,7 @@ class job(MRJob):
         
     def mapper_frequent5Gram(self, _, line):
         fields = line.strip().split('\t')
-        yield fields[0].lower(), float(fields[1])
+        yield len(fields[0]), float(fields[1])
         
     def combiner_frequent5Gram(self, key, values):
         yield key, sum(values)
@@ -134,7 +134,11 @@ class job(MRJob):
             if self.count < 10000:
                 yield key, val
                 self.count += 1
-    
+                
+    def reducer_all(self, key, values):
+        for val in values:
+            yield key, val
+
     """
     Multi-step pipeline definitions
     Based on user input when calling runner function
@@ -158,7 +162,7 @@ class job(MRJob):
                        reducer=self.reducer_topWords),
                 MRStep(mapper=self.mapper_sort,
                        reducer_init=self.reducer_sort_init,
-                       reducer=self.reducer_top10,
+                       reducer=self.reducer_all,
                        jobconf={'mapred.output.key.comparator.class':'org.apache.hadoop.mapred.lib.KeyFieldBasedComparator',
                                 'mapred.text.key.partitioner.options':'-k1,1',
                                 'stream.num.map.output.key.fields':1,
@@ -172,7 +176,7 @@ class job(MRJob):
                        reducer=self.reducer_denseWords),
                 MRStep(mapper=self.mapper_sort,
                        reducer_init=self.reducer_sort_init,
-                       reducer=self.reducer_top100,
+                       reducer=self.reducer_all,
                        jobconf={'mapred.output.key.comparator.class':'org.apache.hadoop.mapred.lib.KeyFieldBasedComparator',
                                 'mapred.text.key.partitioner.options':'-k1,1',
                                 'stream.num.map.output.key.fields':1,
@@ -186,21 +190,7 @@ class job(MRJob):
                        reducer=self.reducer_frequent5Gram),
                 MRStep(mapper=self.mapper_sort,
                        reducer_init=self.reducer_sort_init,
-                       reducer=self.reducer_top100,
-                       jobconf={'mapred.output.key.comparator.class':'org.apache.hadoop.mapred.lib.KeyFieldBasedComparator',
-                                'mapred.text.key.partitioner.options':'-k1,1',
-                                'stream.num.map.output.key.fields':1,
-                                'mapred.text.key.comparator.options':'-k1,1nr',
-                                'mapred.reduce.tasks': 1})
-            ]
-        elif self.part == '5':
-            return [
-                MRStep(mapper=self.mapper_topWords,
-                       combiner=self.combiner_topWords,
-                       reducer=self.reducer_topWords),
-                MRStep(mapper=self.mapper_sort,
-                       reducer_init=self.reducer_sort_init,
-                       reducer=self.reducer_top10000,
+                       reducer=self.reducer_all,
                        jobconf={'mapred.output.key.comparator.class':'org.apache.hadoop.mapred.lib.KeyFieldBasedComparator',
                                 'mapred.text.key.partitioner.options':'-k1,1',
                                 'stream.num.map.output.key.fields':1,
