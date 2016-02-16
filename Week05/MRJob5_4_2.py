@@ -1,6 +1,7 @@
 from mrjob.job import MRJob
 from mrjob.step import MRStep
-from itertools import combinations
+import math
+from itertools import combinations, product, chain
 
 class similarity(MRJob):
     
@@ -21,7 +22,7 @@ class similarity(MRJob):
     
     def mapper_buildFullMatrix(self, _, line):
         fields = line.strip().split('\t')
-        word1 = fields[0]
+        word1 = eval(fields[0])
         stripe = eval(fields[1])
         yield word1, stripe
         for word2 in stripe:
@@ -39,10 +40,12 @@ class similarity(MRJob):
     
     """
     Jaccard similarity
-    - We need to look at all pairs in the basis
+    - We need to only create the pairs we know we want to emit
     - We only emit anything if one item in the pair has a value
-    - We binarize on whether the co-occurrence support is > 0
-    - Emit (word1, word2), (word1 and word2, word1, word2)
+    - We binarize on whether the co-occurrence support is in the list of values
+    - There will be no values of zero in the list of values
+    - bin1 = true/false if word1 is > 0 (if word1 is in set, bin1=1)
+    - Emit (word1, word2), (bin1 and bin2, bin1, bin2)
     """
     
     def mapper_Jaccard_init(self):
@@ -50,14 +53,18 @@ class similarity(MRJob):
         with open('basisWords.txt','r') as myfile:
             for word in myfile:
                 self.vocab.add(word.strip())
-        self.allPairs = list(combinations(sorted(self.vocab),2))
         
-    def mapper_Jaccard(self, key, values):
-        for pair in self.allPairs:
-            i = pair[0] in values
-            j = pair[1] in values
-            if i or j:
-                yield (pair[0], pair[1]), ((i and j)+0, i+0, j+0)
+    def mapper_Jaccard(self, key, value):
+        valueSet = set(value.keys())
+        allPairs = chain(product(valueSet, self.vocab.difference(valueSet)),
+                         combinations(self.vocab.intersection(valueSet), 2))
+
+        for pair in allPairs:
+            sortedPair = sorted(pair)
+            if sortedPair[0] in value or sortedPair[1] in value:
+                i = sortedPair[0] in value
+                j = sortedPair[1] in value
+                yield (sortedPair[0], sortedPair[1]), ((i and j)+0, i+0, j+0)
                 
     def combiner_Jaccard(self, key, values):
         intersect = 0
@@ -71,13 +78,52 @@ class similarity(MRJob):
         
     def reducer_Jaccard(self, key, values):
         intersect = 0.0
-        i = 0
-        j = 0
+        i = 0.0
+        j = 0.0
         for val in values:
             intersect += val[0]
             i += val[1]
             j += val[2]
         yield key, intersect / (i + j - intersect)       
+    
+    """
+    Cosine similarity
+    - Similar to Jaccard, but do not binarize
+    - We can use the same mapper_init as Jaccard
+    - For each pair, we have word1 and word2
+    - count1 is the matrix entry for word1
+    - In the mapper, emit (word1, word2), (count1*count2, count1^2, count2^2)
+    - We can use the same combiner as Jaccard
+    """
+    
+    def mapper_Cosine(self, key, value):
+        valueSet = set(value.keys())
+        allPairs = chain(product(valueSet, self.vocab.difference(valueSet)),
+                         combinations(self.vocab.intersection(valueSet), 2))
+
+        for pair in allPairs:
+            sortedPair = sorted(pair)
+            if sortedPair[0] in value or sortedPair[1] in value:
+                if sortedPair[0] in value:
+                    i = value[sortedPair[0]]
+                else: i = 0.0
+                if sortedPair[1] in value:
+                    j = value[sortedPair[1]]
+                else: j = 0.0
+                yield (sortedPair[0], sortedPair[1]), (i*j, i**2, j**2)
+                    
+    def reducer_Cosine(self, key, values):
+        dotprod = 0.0
+        i = 0.0
+        j = 0.0
+        for val in values:
+            dotprod += val[0]
+            i += val[1]
+            j += val[2]
+        if i == 0 or j == 0:
+            yield key, None
+        else:
+            yield key, dotprod / ((i ** 0.5) * (j ** 0.5))
     
     """
     Multi-step pipeline definitions
@@ -89,13 +135,21 @@ class similarity(MRJob):
             return [
                 MRStep(mapper=self.mapper_buildFullMatrix,
                        combiner=self.reducer_buildFullMatrix,
-                       reducer=self.reducer_buildFullMatrix,
-                       jobconf={'mapred.reduce.tasks': 2}),
+                       reducer=self.reducer_buildFullMatrix),
                 MRStep(mapper_init=self.mapper_Jaccard_init,
                        mapper=self.mapper_Jaccard,
                        combiner=self.combiner_Jaccard,
-                       reducer=self.reducer_Jaccard,
-                       jobconf={'mapred.reduce.tasks': 2})
+                       reducer=self.reducer_Jaccard)
+            ]
+        elif self.method == 'cosine':
+            return [
+                MRStep(mapper=self.mapper_buildFullMatrix,
+                       combiner=self.reducer_buildFullMatrix,
+                       reducer=self.reducer_buildFullMatrix),
+                MRStep(mapper_init=self.mapper_Jaccard_init,
+                       mapper=self.mapper_Cosine,
+                       combiner=self.combiner_Jaccard,
+                       reducer=self.reducer_Cosine)
             ]
     
 

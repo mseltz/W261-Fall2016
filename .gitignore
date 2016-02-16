@@ -2,3 +2,6 @@ License.txt.*
 *.ipynb_checkpoints*
 *.txt~
 *.csv~
+pairs_jaccard
+pairs_cosine
+*part-000*
