@@ -6,3 +6,4 @@ pairs_jaccard
 pairs_cosine
 *part-000*
 LinearRegression.csv
+*.pyc
