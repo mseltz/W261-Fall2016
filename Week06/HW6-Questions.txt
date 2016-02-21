@@ -5,11 +5,20 @@ Live as  of October 13, 2015 Midday
 MIDS UC Berkeley, Machine Learning at Scale
 DATSCIW261 ASSIGNMENT #6
 
-NOTE This homework is an individual homework!
+SPECIAL INSTURCTIONS
+ This weeks homework is a group exercise. Your team assignments for completing this HW are located at:
 
----------------
-=== INSTRUCTIONS for SUBMISSIONS ===
+https://docs.google.com/spreadsheets/d/1ncFQl5Tovn-16slD8mYjP_nzMTPSfiGeLLzW8v_sMjg/edit?usp=sharing
+
+See column Team assignment for Homeworks in tab "Teams for HW Assignments"
+
+Please submit your homeworks (one per team) going forward via this form (and not thru the ISVC):
+
+https://docs.google.com/forms/d/1ZOr9RnIe_A06AcZDB6K1mJN4vrLeSmS2PD6Xm3eOiis/viewform?usp=send_form
+
 Please follow the instructions for submissions carefully.
+
+Note that all referenced files life in the enclosing directory.
 
 === Week 6 ASSIGNMENTS ===
 
@@ -57,7 +66,7 @@ Sample 1% of the data in MapReduce and use the sampled dataset to train a (weigh
 
 Plot the resulting weighted linear regression model versus the original model that you used to generate the data. Comment on your findings.
 
-HW6.5.1 (Optional)
+HW6.5.1 (OPTIONAL)
 Using MRJob and in Python, plot the error surface for the weighted linear regression model using a heatmap and contour plot. 
 Also plot the current model in the original domain space.  (Plot them side by side if possible)
 Plot the path to convergence (during training) for the weighted linear regression model in plot error space and in the original domain space. Make sure to label your plots with iteration numbers, function, model space versus original domain space, etc.
@@ -79,15 +88,20 @@ Improve this notebook as follows:
 -- Rerun the examples similar graphics (or possibly better graphics)
 
 
-HW6.7 Implement Bernoulli Mixture Model via EM
+HW6.7  Implement Bernoulli Mixture Model via EM
 Implement the EM clustering algorithm to determine Bernoulli Mixture Model for discrete data in MRJob.
 
-As a unit test:
+As a unit test use the dataset in the following slides:
 
+https://www.dropbox.com/s/maoj9jidxj1xf5l/MIDS-Live-Lecture-06-EM-Bernouilli-MM-Systems-Test.pdf?dl=0
 
-As a test: use the same dataset from HW 4.5, the Tweet Dataset. 
+Cross-check that you get the same cluster assignments and cluster Bernouilli models as presented in the slides after 25 iterations. Dont forget the smoothing.
+
+As a full test: use the same dataset from HW 4.5, the Tweet Dataset. 
 Using this data, you will implement a 1000-dimensional EM-based Bernoulli Mixture Model  algorithm in MrJob on the users
-by their 1000-dimensional word stripes/vectors using K = 4.  Repeat this experiment using your KMeans MRJob implementation fron HW4.
+by their 1000-dimensional word stripes/vectors using K = 4.  Use the same smoothing as in the unit test.
+
+Repeat this experiment using your KMeans MRJob implementation fron HW4.
 Report the rand index score using the class code as ground truth label for both algorithms and comment on your findings.
 
 Here is some more information on the Tweet Dataset.
@@ -135,7 +149,7 @@ centroid initializations and values of K.
 
 
 
-HW6.8 (Optional) 1 Million songs
+HW6.8 (OPTIONAL) 1 Million songs
 Predict the year of the song. Ask Jimi
 
 
