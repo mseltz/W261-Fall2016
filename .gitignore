@@ -7,3 +7,6 @@ pairs_cosine
 *part-000*
 LinearRegression.csv
 *.pyc
+all-pages-indexed-out.txt
+all-pages-indexed-in.txt
+*/wikipedia/indices.txt

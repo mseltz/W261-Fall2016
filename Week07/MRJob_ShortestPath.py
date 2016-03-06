@@ -10,10 +10,15 @@ class shortestPath(MRJob):
     - Update node statuses
     """
     def mapper(self, _, line):
-        
+
         # Split text to get our data
         fields = line.strip().split('\t')
-        name = fields[0]
+        
+        # If running locally, don't need to eval
+        #name = fields[0]
+        
+        # If using EMR, need to eval the string
+        name = eval(fields[0])
         value = eval(fields[1])
         neighbors = value[0]
         distance = int(value[1])
@@ -38,7 +43,7 @@ class shortestPath(MRJob):
     Reducer: Aggregate expanded nodes
     """
     def reducer(self, key, values):
-        neighbors = None
+        neighbors = {}
         distance = sys.maxint
         status = None
         path = []
@@ -69,14 +74,6 @@ class shortestPath(MRJob):
             distance = min(distance, val[1])
             
         yield key, [neighbors, distance, status, path]
-    
-    """
-    Multistep pipeline definition
-    """
-#     def steps(self):
-#         return [
-#                 MRStep()
-#             ]
     
 if __name__ == '__main__':
     shortestPath.run()

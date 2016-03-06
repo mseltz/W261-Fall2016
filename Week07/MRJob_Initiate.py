@@ -19,4 +19,4 @@ class initiate(MRJob):
             yield name, [neighbors, sys.maxint, 'U', []]
         
 if __name__ == '__main__':
-    shortestPath.run()
+    initiate.run()
