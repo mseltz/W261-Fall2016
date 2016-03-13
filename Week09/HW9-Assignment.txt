@@ -85,12 +85,12 @@ https://en.wikipedia.org/wiki/PageRank#/media/File:PageRanks-Example.svg
 ===================================================================
 ===HW 9.3: Applying PageRank to the Wikipedia hyperlinks network===
 
-Run your PageRank implementation on the Wikipedia dataset for 10 iterations,
+Run your PageRank implementation on the Wikipedia dataset for 5 iterations,
 and display the top 100 ranked nodes (with alpha = 0.85).
 
-Run your PageRank implementation on the Wikipedia dataset for 50 iterations,
+Run your PageRank implementation on the Wikipedia dataset for 10 iterations,
 and display the top 100 ranked nodes (with teleportation factor of 0.15). 
-Have the top 100 ranked pages changed? Comment on your findings. Plot the pagerank values for the top 100 pages resulting from the 50 iterations run. Then plot the pagerank values for the same 100 pages that resulted from the 10 iterations run.  
+Have the top 100 ranked pages changed? Comment on your findings. Plot the pagerank values for the top 100 pages resulting from the 5 iterations run. Then plot the pagerank values for the same 100 pages that resulted from the 10 iterations run.  
 
 
 ================================================================
@@ -154,15 +154,23 @@ on the smaller networks.
 
 
 ===========================================================
-===HW 9.5: Applying topic-specific PageRank to Wikipedia===
+===HW 9.5: (OPTIONAL) Applying topic-specific PageRank to Wikipedia===
 
 Here you will apply your topic-specific PageRank implementation to Wikipedia,
-defining topics (very arbitrarily) for each page by the length (number of characters) of the name of the article mod 10,
-so that there are 10 topics. Once again, print out the top ten ranking nodes 
+defining topics (very arbitrarily) for each page by the length (number of 
+characters) of the name of the article mod 10, so that there are 
+10 topics. Once again, print out the top ten ranking nodes 
 and their topics for each of the 11 versions, and comment on your result.
-Assume a teleportation factor of 0.15 in all your analyses.
+Assume a teleportation factor of 0.15 in all your analyses. Run for 10 iterations.
 
-HW 9.6: TextRank (OPTIONAL)
+Plot the pagerank values for the top 100 pages resulting from the 5 iterations run in HW9.3. 
+Then plot the pagerank values for the same 100 pages that result from the 
+topic specific pagerank after 10 iterations run. Comment on your findings.   
+
+
+
+===========================================================
+===HW 9.6: (OPTIONAL) TextRank ===
 
 What is TextRank. Describe the main steps in the algorithm. Why does TextRank work?
 Implement TextRank in MrJob for keyword phrases (not just unigrams) extraction using co-occurrence based similarity measure with with sizes of N = 2 and 3. And evaluate your code using the following example using precision, recall, and FBeta (Beta=1):

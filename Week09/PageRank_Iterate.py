@@ -14,6 +14,7 @@ class iterate(MRJob):
         super(iterate, self).configure_options()
         self.add_passthrough_option('--numNodes', default=1, type='int')
         self.add_passthrough_option('--alpha', default=0.15, type='float')
+        self.add_passthrough_option('--iterations', default=1, type='int')
     
     """
     Mapper: Distribute PageRank mass to all neighbors
@@ -85,7 +86,7 @@ class iterate(MRJob):
     def mapper_dangle(self, key, value):
         a = self.options.alpha
         n = self.options.numNodes
-        new_PageRank = a * (1 / n) + (1 - a) * (self.m / n + value[1])
+        new_PageRank = (1 - a) / n + a * (self.m / n + value[1])
         yield key, (value[0], new_PageRank)
     
             
@@ -93,12 +94,12 @@ class iterate(MRJob):
     Multi-step pipeline
     """
     def steps(self):
-        return [
+        return ([
             MRStep(mapper=self.mapper_dist,
                    reducer=self.reducer_dist),
             MRStep(mapper_init=self.mapper_dangle_init,
                    mapper=self.mapper_dangle)
-            ]
+            ] * self.options.iterations)
 
 if __name__ == '__main__':
     iterate.run()
