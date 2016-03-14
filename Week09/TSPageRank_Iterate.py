@@ -40,9 +40,9 @@ class iterate(MRJob):
         else:
             yield '*dangling', PageRank
         
-        # Maintain the graph structure
+        # Maintain the graph structure and weights
         
-        yield key, value[0]
+        yield key, (value[0], value[2])
      
     #------------------
     # Reducer:
@@ -52,15 +52,18 @@ class iterate(MRJob):
     def reducer_dist(self, key, values):
         
         new_PageRank = 0.0
+        weight = 0.0
         neighbors = {}
         
         for val in values:
             if type(val) == type(0.0):
                 new_PageRank += val
-            elif type(val) == type({}):
-                neighbors = val
-
-        yield key, (neighbors, new_PageRank)
+            else:
+                neighbors = val[0]
+                weight = val[1]
+                
+        
+        yield key, (neighbors, new_PageRank, weight)
 
     #------------------
     # Mapper: 
@@ -78,20 +81,22 @@ class iterate(MRJob):
         
     def reducer_dangle(self, key, values):
         
-        PageRank = 0
+        PageRank = 0.0
         neighbors = {}
+        weight = 0.0
         
         for val in values:
             PageRank = val[1]
             neighbors = val[0]
+            weight = val[2]
             
         if key == '*dangling':
             self.m = PageRank
         else:
             a = self.options.alpha
             n = self.options.numNodes
-            new_PageRank = (1 - a) / n + a * (self.m / n + PageRank)
-            yield key, (neighbors, new_PageRank)
+            new_PageRank = (1 - a) * weight + a * (self.m / n + PageRank)
+            yield key, (neighbors, new_PageRank, weight)
             
     #------------------
     # Pipeline:
@@ -103,7 +108,7 @@ class iterate(MRJob):
             MRStep(mapper=self.mapper_dangle,
                    reducer_init=self.reducer_init,
                    reducer=self.reducer_dangle,
-                   jobconf={'mapred.reduce.tasks': 1})
+                   jobconf={'mapreduce.job.reduces': 1})
             ] * self.options.iterations)
 
 if __name__ == '__main__':

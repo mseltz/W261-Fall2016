@@ -11,7 +11,7 @@ class iterate(MRJob):
     def configure_options(self):
         super(iterate, self).configure_options()
         self.add_passthrough_option('--numNodes', default=1, type='int')
-        self.add_passthrough_option('--alpha', default=0.85, type='float')
+        self.add_passthrough_option('--alpha', default=0.15, type='float')
         self.add_passthrough_option('--iterations', default=1, type='int')
     
     INPUT_PROTOCOL = JSONProtocol
@@ -59,7 +59,11 @@ class iterate(MRJob):
                 new_PageRank += val
             elif type(val) == type({}):
                 neighbors = val
-
+        
+#         if key == '*dangling':
+#             with open('danglingMass.txt', 'w') as myfile:
+#                 myfile.write(str(new_PageRank))
+#         else:
         yield key, (neighbors, new_PageRank)
 
     #------------------
@@ -67,15 +71,26 @@ class iterate(MRJob):
     # - Account for teleportation
     # - Distribute dangling mass to all nodes
     
+#     def mapper_dangle_init(self):
+#         with open('danglingMass.txt', 'r') as f:
+#             for line in f:
+#                 self.m = float(line)
+    
+#     def mapper_dangle(self, key, value):
+#         a = self.options.alpha
+#         n = self.options.numNodes
+#         new_PageRank = (1 - a) / n + a * (self.m / n + value[1])
+#         yield key, (value[0], new_PageRank)
+    
     # Below is doing it with only one reducer
     # This isn't a good way to do it, but couldn't figure out a better way
     
     def mapper_dangle(self, key, value):
         yield key, value
-        
+                
     def reducer_init(self):
         self.m = 0.0
-        
+
     def reducer_dangle(self, key, values):
         
         PageRank = 0
@@ -101,7 +116,6 @@ class iterate(MRJob):
             MRStep(mapper=self.mapper_dist,
                    reducer=self.reducer_dist),
             MRStep(mapper=self.mapper_dangle,
-                   reducer_init=self.reducer_init,
                    reducer=self.reducer_dangle,
                    jobconf={'mapred.reduce.tasks': 1})
             ] * self.options.iterations)
