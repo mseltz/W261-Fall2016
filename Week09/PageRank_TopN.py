@@ -2,6 +2,7 @@ from __future__ import division
 from mrjob.job import MRJob
 from mrjob.step import MRStep
 from mrjob.protocol import JSONProtocol
+from math import log, exp
 
 class topN(MRJob):
     
@@ -21,7 +22,7 @@ class topN(MRJob):
     # - Use PageRank as key
     
     def mapper(self, key, value):
-        yield value[1], key
+        yield log(value[1]), key
         
     #------------------
     # Reducer:
@@ -35,7 +36,7 @@ class topN(MRJob):
         
         for val in values:
             if self.seen < n:
-                yield key, val
+                yield exp(key), val
                 self.seen += 1
                 
     #------------------
