@@ -1,0 +1,13 @@
+EMR
+(copy SSH from AWS, for key location, add ~/.ssh/w261_key.pem)
+sudo yum install git-all
+git clone https://github.com/mseltz/W261-Fall2016.git
+sudo pip install awscli
+aws configure
+sudo pip install ipython jupyter
+PYSPARK_DRIVER_PYTHON=jupyter PYSPARK_DRIVER_PYTHON_OPTS="notebook --no-browser --port=7777" pyspark --conf spark.yarn.executor.memoryOverhead=1024
+
+
+Local
+ssh -i ~/.ssh/w261_key.pem -N -f -L localhost:7776:localhost:7777 hadoop@
+http://localhost:7776
