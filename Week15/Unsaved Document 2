@@ -1,0 +1,34 @@
+#..... Other code...
+#Country lookup code
+
+# Helper functions for looking up the call signs
+
+ def lookupCountry(sign, prefixes):
+    pos = bisect.bisect_left(prefixes, sign)
+    return prefixes[pos].split(",")[1]
+
+
+def loadCallSignTable():
+    f = open("callsign_tbl_sorted.txt", "r")
+    return f.readlines()
+
+# Lookup the locations of the call signs on the
+# RDD contactCounts. We load a list of call sign
+# prefixes to country code to support this lookup.
+signPrefixes = loadCallSignTable()
+
+
+def processSignCount(sign_count, signPrefixes):
+    country = lookupCountry(sign_count[0], signPrefixes)
+    count = sign_count[1]
+    return (country, count)
+
+contactCounts = sc.parallelize([["ZMZ", 1], ["ZMZ", 3]])
+
+countryContactCounts = (contactCounts
+                        .map(lambda signCount: processSignCount(signCount, signPrefixes))
+                        .reduceByKey((lambda x, y: x + y)))
+
+#countryContactCounts.saveAsTextFile("tmp/countries.txt")
+
+
